@@ -1,0 +1,11 @@
+(define (square x) (* x x))
+
+(define (sum-of-square x y) (+ (square x) (square y)))
+
+(define (sum-of-square-of-larger x y z)
+   (if (< x y) (if (< y z) (sum-of-square y z) (if (< x z) (sum-of-square y z) (sum-of-square x y)))
+               (if (< y z) (sum-of-square x z) (sum-of-square x y))))
+
+(sum-of-square-of-larger 4 -1 8)
+(sum-of-square-of-larger -1 4 8)
+(sum-of-square-of-larger 4 8 -1)
