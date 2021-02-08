@@ -1,0 +1,19 @@
+(define (sum term a next b index n)
+ (if (> index n)
+     0
+     (+ (cond ((= index 0) (term a))
+              ((= index n) (term a))
+              ((= (remainder index 2) 0) (* 2 (term a)))
+              ((= (remainder index 2) 1) (* 4 (term a))))
+        (sum term (next a) next b (+ index 1) n))))
+
+(define (integral f a b n)
+ (define (add-h x) (+ x (exact->inexact (/ (- b a) n))))
+ (exact->inexact (* (/ (/ (- b a) n) 3) (sum f a add-h b 0 n)))
+)
+
+(define (cube x) (* x x x))
+
+(integral cube 0 1 100)
+(integral cube 0 1 1000)
+
