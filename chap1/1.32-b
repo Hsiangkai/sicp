@@ -1,0 +1,25 @@
+(define (accumulate combiner null-value term a next b)
+ (define (iter x result)
+  (if (> x b)
+   (combiner null-value result)
+   (iter (next x) (combiner result (term x)))))
+ (iter a null-value)
+)
+
+(define (sum term a next b)
+ (accumulate + 0 term a next b))
+
+(define (product term a next b)
+ (accumulate * 1 term a next b))
+
+(define (identity a) a)
+(define (inc a) (+ a 1))
+
+(sum identity 1 inc 10)
+
+(define (factorial n)
+ (product identity 1 inc n))
+
+(factorial 5)
+(factorial 8)
+
