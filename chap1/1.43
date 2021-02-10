@@ -1,0 +1,12 @@
+(define (compose f g)
+ (lambda (x) (f (g x))))
+
+(define (repeated f n)
+ (lambda (x) (if (= n 1)
+              (f x)
+              ((compose (repeated f (- n 1)) f) x))))
+
+(define (inc x) (+ x 1))
+
+((repeated inc 5) 3)
+((repeated square 2) 5)
