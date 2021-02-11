@@ -1,0 +1,16 @@
+(define (cons a b)
+ (* (expt 2 a) (expt 3 b)))
+
+(define (car z)
+ (define (remove-3 z)
+  (if (= (remainder z 3) 0) (remove-3 (/ z 3)) (/ (log z) (log 2))))
+ (remove-3 z))
+
+(define (cdr z)
+ (define (remove-2 z)
+  (if (= (remainder z 2) 0) (remove-2 (/ z 2)) (/ (log z) (log 3))))
+ (remove-2 z))
+
+(define z (cons 5 7))
+(car z)
+(cdr z)
