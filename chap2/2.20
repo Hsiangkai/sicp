@@ -1,0 +1,9 @@
+(define (same-parity x . y)
+ (define (same-parity-iter result x y)
+  (if (null? y) result
+                (if (= (remainder (car y) 2) (remainder x 2))
+                     (same-parity-iter (append result (car y)) x (cdr y))
+                     (same-parity-iter (result x (cdr y))))))
+ (same-parity-iter nil x y)
+)
+
