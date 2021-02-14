@@ -1,0 +1,25 @@
+(define (square-tree tree)
+ (if (null? tree) `()
+   (let ((node (car tree)))
+    (if (list? node) (cons (square-tree node) (square-tree (cdr tree)))
+                     (cons (* node node) (square-tree (cdr tree)))))))
+
+(square-tree
+ (list 1
+       (list 2 (list 3 4) 5)
+       (list 6 7)))
+
+(define (map proc tree)
+  (if (null? tree) '()
+    (let ((node (car tree)))
+      (if (list? node) (cons (map proc node) (map proc (cdr tree)))
+                       (cons (proc node) (map proc (cdr tree)))))))
+
+(define (square-tree-v2 tree)
+  (map (lambda (x) (* x x)) tree))
+
+(square-tree-v2
+ (list 1
+       (list 2 (list 3 4) 5)
+       (list 6 7)))
+
