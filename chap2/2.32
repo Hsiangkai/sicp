@@ -1,0 +1,17 @@
+(define (map proc items)
+  (if (null? items)
+      '()
+      (cons (proc (car items))
+            (map proc (cdr items)))))
+
+(define (subsets s)
+ (if (null? s)
+  (list '())
+  (let ((rest (subsets (cdr s))))
+   (append rest (map
+                 (lambda (r) (cons (car s) r))
+                 rest)))))
+
+(subsets (list 1 2 3))
+
+
